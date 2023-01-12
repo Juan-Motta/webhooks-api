@@ -3,7 +3,16 @@ import { bull } from './queue';
 import { reconectAmqpClient } from './workers/amqp_worker';
 import { config } from './config';
 
-async function RabbitClient(host: string, queue: string) {
+/**
+ * Starts a connection with the RabbitMQ client and keeps it alive in background for listening
+ * to the new messages
+ * If connection is lost, it queue a new instance of the client and schedule it to a certain
+ * amount of time defined by the enviroment variable recconection_delay
+ * 
+ * @param host - rabbitmq host
+ * @param queue - rabbitmq queue
+ */
+async function RabbitClient(host: string, queue: string): Promise<void> {
     try{
         const client: Connection = await amqplib.connect(host);
         const channel: Channel = await client.createChannel();
