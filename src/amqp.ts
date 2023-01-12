@@ -16,7 +16,7 @@ async function RabbitClient(host: string, queue: string) {
             }
         });
         channel.on('close', async function() {
-            console.log('close');
+            console.log('[x] Connection with RabbitMQ client closed...');
             bull.process(reconectAmqpClient);
             bull.add({}, {delay: config.rabbit.reconnection_delay})
         })
