@@ -2,6 +2,9 @@ import { send_discord_notification } from "./discord";
 import { DiscordMessage } from "../interfaces/discord";
 import { config } from "../config";
 
+/**
+ * Sends a connection notification to discord
+ */
 function send_rabbit_connection_notification() {
     const message: DiscordMessage = {
         title: 'Rabbit connection lost ⚠️',
@@ -12,6 +15,9 @@ function send_rabbit_connection_notification() {
     send_discord_notification(message);
 }
 
+/**
+ * Sends a disconnect notification to discord
+ */
 function send_rabbit_discconect_notification() {
     const message: DiscordMessage = {
         title: 'Rabbit connected ✅',
