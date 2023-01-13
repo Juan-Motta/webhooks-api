@@ -12,8 +12,10 @@ function send_discord_notification(message: DiscordMessage) {
     const embed: EmbedBuilder = new EmbedBuilder()
         .setTitle(message.title)
         .setDescription(message.description)
-        .setColor(message.color)
-        .addFields(...message.fields);
+        .setColor(message.color);
+    if (message.fields.length > 0) {
+        embed.addFields(...message.fields);
+    }
     discord_client.send({
         embeds: [embed],
     });
