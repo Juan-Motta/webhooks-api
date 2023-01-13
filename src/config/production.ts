@@ -27,7 +27,8 @@ const config: Config = {
         host: process.env.REDIS_QUEUE_HOST!,
         port: parseInt(process.env.REDIS_QUEUE_PORT!),
         db: parseInt(process.env.REDIS_QUEUE_DB!)
-    }
+    },
+    discord_url: process.env.DISCORD_URL!
 };
 
 export { config }

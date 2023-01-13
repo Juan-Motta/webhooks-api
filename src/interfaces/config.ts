@@ -5,7 +5,8 @@ interface Config {
     enviroment: string,
     db: DbConfig,
     rabbit: RabbitConfig,
-    redis_queue: RedisQueue
+    redis_queue: RedisQueue,
+    discord_url: string
 }
 
 interface DbConfig {
