@@ -1,5 +1,6 @@
 interface Config {
-    debug: string,
+    debug: boolean,
+    sql_debug: boolean,
     version: string,
     port: number,
     enviroment: string,

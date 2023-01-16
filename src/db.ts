@@ -9,8 +9,8 @@ const ServiceDataSource: DataSource = new DataSource({
     password: config.service_db.password,
     port: config.service_db.port,
     database: config.service_db.database,
-    entities: []
-
+    entities: [],
+    logging: config.sql_debug
 })
 
 export {

@@ -9,7 +9,8 @@ if (process.env.DEBUG === 'true') {
 }
 
 const config: Config = {
-    debug: process.env.DEBUG!,
+    debug: process.env.DEBUG! === 'true' ? true : false,
+    sql_debug: process.env.SQL_DEBUG! === 'true' ? true : false,
     version: process.env.VERSION!,
     port: parseInt(process.env.PORT!),
     enviroment: process.env.ENVIROMENT!,
