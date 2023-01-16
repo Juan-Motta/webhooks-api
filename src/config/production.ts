@@ -8,7 +8,14 @@ const config: Config = {
     version: process.env.VERSION!,
     port: parseInt(process.env.PORT!),
     enviroment: process.env.ENVIROMENT!,
-    db: {
+    service_db: {
+        host: process.env.DB_HOST!,
+        database: process.env.DB_DATABASE!,
+        user: process.env.DB_USER!,
+        password: process.env.DB_PASSWORD!,
+        port: parseInt(process.env.DB_PORT!)
+    },
+    webhooks_db: {
         host: process.env.DB_HOST!,
         database: process.env.DB_DATABASE!,
         user: process.env.DB_USER!,

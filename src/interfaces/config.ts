@@ -3,7 +3,8 @@ interface Config {
     version: string,
     port: number,
     enviroment: string,
-    db: DbConfig,
+    service_db: DbConfig,
+    webhooks_db: DbConfig,
     rabbit: RabbitConfig,
     redis_queue: RedisQueue,
     discord_url: string
