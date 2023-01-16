@@ -1,5 +1,6 @@
 import { DataSource } from "typeorm";
 
+import { Service } from "./entities/services";
 import { config } from "./config";
 
 const ServiceDataSource: DataSource = new DataSource({
@@ -9,8 +10,9 @@ const ServiceDataSource: DataSource = new DataSource({
     password: config.service_db.password,
     port: config.service_db.port,
     database: config.service_db.database,
-    entities: [],
-    logging: config.sql_debug
+    entities: [Service],
+    logging: config.sql_debug,
+    synchronize: false
 })
 
 export {
