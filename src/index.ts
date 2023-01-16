@@ -1,16 +1,17 @@
-import express, { Application } from 'express';
-import cors from 'cors';
-import { RabbitClient } from './amqp';
+import 'reflect-metadata';
 
 import { config } from './config';
+import { ServiceDataSource } from './db';
+import { RabbitClient } from './amqp';
+import { app } from './app';
 
-const app: Application = express();
+async function main() {
+    await ServiceDataSource.initialize();
+    await RabbitClient(`amqp://${config.rabbit.host}:${config.rabbit.port}`, config.rabbit.queue);
+    
+    app.listen( config.port ,() => {
+        console.log(`Server running on port ${config.port}`);
+    })
+}
 
-app.use(cors());
-app.use(express.json());
-
-RabbitClient(`amqp://${config.rabbit.host}:${config.rabbit.port}`, config.rabbit.queue);
-
-app.listen( config.port ,() => {
-    console.log(`Server running on port ${config.port}`);
-})
+main();
