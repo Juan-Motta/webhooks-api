@@ -12,6 +12,6 @@ const bull: QueueInterface = new Queue(
     }
 );
 
-console.log('[x] Main queue correctly setted up');
+console.log('[x] Bull correctly setted up');
 
 export { bull }
