@@ -4,6 +4,10 @@ import { Config } from "../interfaces/config";
 
 dotenv.config();
 
+if (process.env.DEBUG === 'true') {
+    dotenv.config({ path: `.env.develop`, override: true });
+}
+
 const config: Config = {
     debug: process.env.DEBUG!,
     version: process.env.VERSION!,
