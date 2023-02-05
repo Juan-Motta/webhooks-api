@@ -17,7 +17,7 @@ async function RabbitClient(host: string, queue: string): Promise<void> {
     try{
         const client: Connection = await amqplib.connect(host);
         const channel: Channel = await client.createChannel();
-        console.log('[x] Connected to rabbitMQ');
+        console.log('[x] RabbitMQ ... OK');
         await channel.assertQueue(queue);
         await channel.consume(queue, async (message: Message | null) => {
             if (message) {

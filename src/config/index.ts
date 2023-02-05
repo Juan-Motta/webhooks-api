@@ -44,4 +44,7 @@ const config: Config = {
     discord_url: process.env.DISCORD_URL!
 };
 
+console.log('[x] Enviroment variables ... OK');
+
+
 export { config }
