@@ -1,20 +1,33 @@
-import { DataSource } from "typeorm";
-
-import { Service } from "./entities/services";
+import knex from "knex";
 import { config } from "./config";
 
-const ServiceDataSource: DataSource = new DataSource({
-    type: 'postgres',
-    host: config.service_db.host,
-    username: config.service_db.user,
-    password: config.service_db.password,
-    port: config.service_db.port,
-    database: config.service_db.database,
-    entities: [Service],
-    logging: config.sql_debug,
-    synchronize: false
-})
+const services_db = knex({
+    client: 'pg',
+    connection: {
+        host: config.service_db.host,
+        port: config.service_db.port,
+        user: config.service_db.user,
+        password: config.service_db.password,
+        database: config.service_db.database
+    }
+});
 
-export {
-    ServiceDataSource
-}
+console.log(`[X] Database connected to ${config.service_db.database}`);
+
+const webhooks_db = knex({
+    client: 'pg',
+    connection: {
+        host: config.webhooks_db.host,
+        port: config.webhooks_db.port,
+        user: config.webhooks_db.user,
+        password: config.webhooks_db.password,
+        database: config.webhooks_db.database
+    }
+});
+
+console.log(`[X] Database connected to ${config.webhooks_db.database}`);
+
+export { 
+    services_db, 
+    webhooks_db 
+};
