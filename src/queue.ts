@@ -1,6 +1,9 @@
 import Queue, { Queue as QueueInterface} from "bull";
 import { config } from "./config";
 
+/**
+ * Sets up a bull queue instance and connects it to redis
+ */
 const bull: QueueInterface = new Queue(
     'queue',
     {

@@ -1,6 +1,12 @@
 import { services_db } from "../db";
+import { Service } from "../interfaces/repository/services";
 
-async function getServiceById (serviceId: number) {
+/**
+ * Retrieves all the needed information associated to a service record
+ * 
+ * @param serviceId - rabbitmq host
+ */
+async function getServiceById (serviceId: number): Promise<Service> {
     const sql_query: string = `
     SELECT
         s.id                                                                                                AS "id",

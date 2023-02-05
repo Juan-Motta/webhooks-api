@@ -1,6 +1,9 @@
 import knex from "knex";
 import { config } from "./config";
 
+/**
+ * Sets up a instance to service database
+ */
 const services_db = knex({
     client: 'pg',
     connection: {
@@ -14,6 +17,9 @@ const services_db = knex({
 
 console.log(`[X] Database connected to ${config.service_db.database}`);
 
+/**
+ * Sets up a instance to webhooks database
+ */
 const webhooks_db = knex({
     client: 'pg',
     connection: {
