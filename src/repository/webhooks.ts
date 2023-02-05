@@ -7,7 +7,7 @@ import { Webhook } from "../interfaces/repository/webhooks";
  * @param userId - user id
  * @param event - event pattern
  */
-async function getWebhookById(userId: number, event: string): Promise<Webhook[]> {
+async function getWebhook(userId: number, event: string): Promise<Webhook[]> {
     const sql_query: string = `
     SELECT
         w.id,
@@ -29,5 +29,5 @@ async function getWebhookById(userId: number, event: string): Promise<Webhook[]>
 }
 
 export { 
-    getWebhookById 
+    getWebhook 
 }
