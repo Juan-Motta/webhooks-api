@@ -1,4 +1,4 @@
-import amqplib, { Connection, Channel, Message } from 'amqplib';
+import amqplib, { Connection, Channel } from 'amqplib';
 import { bull } from './queue';
 import { reconectAmqpClient } from './workers/amqp_worker';
 import { config } from './config';
