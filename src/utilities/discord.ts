@@ -8,17 +8,21 @@ import { DiscordMessage } from "../interfaces/discord";
  * @param message - An object that contains the information used to build up the discord message
  */
 function send_discord_notification(message: DiscordMessage) {
-    const discord_client: WebhookClient = new WebhookClient({url: config.discord_url});
-    const embed: EmbedBuilder = new EmbedBuilder()
-        .setTitle(message.title)
-        .setDescription(message.description)
-        .setColor(message.color);
-    if (message.fields.length > 0) {
-        embed.addFields(...message.fields);
+    try {
+        const discord_client: WebhookClient = new WebhookClient({url: config.discord_url});
+        const embed: EmbedBuilder = new EmbedBuilder()
+            .setTitle(message.title)
+            .setDescription(message.description)
+            .setColor(message.color);
+        if (message.fields.length > 0) {
+            embed.addFields(...message.fields);
+        }
+        discord_client.send({
+            embeds: [embed],
+        });
+    } catch (error) {
+        console.log(`[x] Error 005: ${error}`);
     }
-    discord_client.send({
-        embeds: [embed],
-    });
 }
 
 export {
