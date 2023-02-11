@@ -1,5 +1,6 @@
-import { services_db } from "../db";
-import { Service } from "../interfaces/repository/services";
+import { services_db } from "../../db";
+import { Service } from "../../interfaces/repository/services";
+import { Knex } from "knex";
 
 /**
  * Retrieves all the needed information associated to a service record
@@ -204,6 +205,10 @@ async function getServiceById (serviceId: number): Promise<Service> {
         s.active = true
     LIMIT 1;
     `;
-    const services = await services_db.raw(sql_query);
-    return services.rows
+    const services = await services_db.raw(sql_query)
+    return services.rows[0]
+}
+
+export {
+    getServiceById
 }
