@@ -1,5 +1,3 @@
-import 'reflect-metadata';
-
 import { config } from './config';
 import { RabbitClient } from './amqp';
 import { app } from './app';
