@@ -1,4 +1,5 @@
 import { isNumeric } from '../utilities/validations';
+import { send_generic_message_notification } from './notifications';
 
 /**
  * Formats a string literal and replaces the values inside ${} for the object values associated
@@ -9,7 +10,7 @@ import { isNumeric } from '../utilities/validations';
  * @param data - object literal that contains the data
  */
 function formatString(text: string, data: object) {
-    return text.replaceAll(/\$\{(\w.?[^\"|^\}]+)\}/g, (searchValue: string, replacer: string): string => {
+    const fullText = text.replaceAll(/\$\{(\w.?[^\"|^\}]+)\}/g, (searchValue: string, replacer: string): string => {
         const keys: string[] = replacer.split(".")
         let value: any = data;
         keys.map((key: string) => {
@@ -24,6 +25,20 @@ function formatString(text: string, data: object) {
         })
         return value;
     });
+    const finalFullText = fullText.replaceAll(`'`, `"`)
+    try {
+        return JSON.parse(finalFullText);
+    } catch (error) {
+        send_generic_message_notification(
+            'String object formatting error 🔴',
+            'Error at formatting object format retrieved from database',
+            [{
+                name: "payload", 
+                value: finalFullText
+            }]
+        );
+        throw new Error(`[x] Error 006 error at formating string`);
+    }
 }
 
 export {
