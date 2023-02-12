@@ -6,7 +6,7 @@ import { getServiceById } from "../services/queries/services";
 import { AmqpMessage } from '../interfaces/amqp';
 import { send_generic_message_notification } from '../utilities/notifications';
 import { formatString } from '../utilities/format';
-
+import { sendHttpNotification } from '../utilities/fetch';
 
 /**
  * Consumes the message sent in rabbit, sent the acknowledge notification, parse the string
@@ -60,10 +60,10 @@ async function sendWebhook(message: AmqpMessage) {
         throw new Error(`[x] Warning 004: event ${message.event} not found for ${message.service_id}`)
     }
     const service: Service = await getServiceById(message.service_id);
-    webhooks.map(async (webhook) => {
-        const webhookBody = webhook.payload
-        const data = formatString(webhookBody, service)
-        console.log(data);    
+    webhooks.map(async (webhook: Webhook) => {
+        const data: object = formatString(webhook.payload, service);
+        const headers = webhook.headers;
+        await sendHttpNotification(webhook.webhook_url, webhook.method, data, headers);  
     })
 }
 
