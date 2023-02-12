@@ -1,5 +1,5 @@
 import { services_db } from "../../db";
-import { Service } from "../../interfaces/repository/services";
+import { Service } from "../../interfaces/services";
 import { Knex } from "knex";
 
 /**

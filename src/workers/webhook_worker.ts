@@ -1,7 +1,7 @@
 import { Message, Channel } from 'amqplib';
-import { Webhook } from "../interfaces/repository/webhooks";
+import { Webhook } from "../interfaces/webhooks";
 import { getWebhook } from "../services/queries/webhooks";
-import { Service } from "../interfaces/repository/services";
+import { Service } from "../interfaces/services";
 import { getServiceById } from "../services/queries/services";
 import { AmqpMessage } from '../interfaces/amqp';
 import { send_generic_message_notification } from '../utilities/notifications';

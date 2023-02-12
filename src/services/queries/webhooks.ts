@@ -1,5 +1,5 @@
 import { webhooks_db } from "../../db";
-import { Webhook } from "../../interfaces/repository/webhooks";
+import { Webhook } from "../../interfaces/webhooks";
 
 /**
  * Retrieves all the needed information associated to a webhook record
