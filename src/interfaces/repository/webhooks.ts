@@ -3,7 +3,7 @@ interface Webhook {
     user_id: number
     event_pattern: string
     webhook_url: string
-    headers: string
+    headers: object
     payload: string
     method: string
     attemps: number
